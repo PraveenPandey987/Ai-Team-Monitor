@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Team Monitor</title>
+    <!-- 1. Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Add a little extra style for the chat bubbles */
+        .chat-bubble {
+            max-width: 75%;
+        }
+        .user-bubble {
+            @apply bg-blue-600 text-white self-end rounded-lg rounded-br-none;
+        }
+        .bot-bubble {
+            @apply bg-gray-200 text-gray-900 self-start rounded-lg rounded-bl-none;
+        }
+        /* Custom scrollbar for chat */
+        #chat-container {
+            scrollbar-width: thin;
+            scrollbar-color: #9ca3af #f3f4f6;
+        }
+        #chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chat-container::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+        #chat-container::-webkit-scrollbar-thumb {
+            background-color: #9ca3af;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100 flex h-full antialiased">
+
+    <!-- 2. Main Chat Interface Layout -->
+    <div class="flex flex-col h-full w-full max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        
+        <!-- Header -->
+        <header class="bg-gray-800 text-white p-4 text-center">
+            <h1 class="text-xl font-semibold">AI Team Monitor</h1>
+            <p class="text-sm text-gray-300">Ask about team activity (e.g., "What is Praveenk working on?")</p>
+        </header>
+
+        <!-- Chat Container -->
+        <main id="chat-container" class="flex-1 p-4 space-y-4 overflow-y-auto">
+            <!-- Initial Bot Message -->
+            <div class="flex">
+                <div class="chat-bubble bot-bubble p-3 shadow">
+                    <p class="text-sm">Hello! I can help you get updates from JIRA and GitHub. Who are you asking about?</p>
+                </div>
+            </div>
+            <!-- Chat messages will be added here by JavaScript -->
+        </main>
+
+        <!-- Loading Indicator (hidden by default) -->
+        <div id="loading-indicator" class="hidden p-4 text-center">
+            <p class="text-sm text-gray-500 italic">AI is thinking...</p>
+        </div>
+
+        <!-- Input Form -->
+        <footer class="p-4 bg-gray-100 border-t border-gray-200">
+            <form id="chat-form" class="flex items-center space-x-2">
+                <input 
+                    type="text" 
+                    id="question-input" 
+                    placeholder="Ask a question..." 
+                    class="flex-1 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    autocomplete="off">
+                <button 
+                    type="submit" 
+                    class="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400 transition-transform active:scale-90">
+                    <!-- UPDATED Send Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                      <path d="M2.01 3.22a.75.75 0 0 1 .723-.02L18.53 9.47a.75.75 0 0 1 0 1.06l-15.798 6.27a.75.75 0 0 1-1.002-.85L3.89 10 2.01 3.22Z" />
+                    </svg>
+                </button>
+            </form>
+        </footer>
+    </div>
+
+    <!-- 3. JavaScript Logic -->
+    <script src="script.js"></script>
+
+</body>
+</html>
